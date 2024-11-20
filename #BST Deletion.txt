@@ -1,0 +1,87 @@
+#BST Deletion
+class Tree:
+    
+    def __init__(self, val):
+        self.left = None
+        self.value = val
+        self.right = None
+        
+    # Insert a new value into the tree
+    def insert(self, new_node):
+                  
+        # If data is less than current node value,insert into left subtree
+        
+        if new_node.value < self.value:
+            if self.left==None:
+                self.left=new_node
+                print("{} is inserted successfully".format(new_node.value))
+            else:
+                self.left.insert(new_node)
+                
+          
+            # If data is greater than current node value, insert into right subtree
+        elif new_node.value >= self.value:
+            if self.right==None:
+                self.right=new_node
+                print("{} is inserted successfully".format(new_node.value))
+            else:
+                self.right.insert(new_node)
+                
+# Function to print inorder traversal
+def inorderTraversal(self):
+    if self is None:
+        return
+    inorderTraversal(self.left)
+    print(self.value, end=' ')
+    inorderTraversal(self.right)          
+
+
+def get_successor(curr):
+    curr = curr.right
+    while curr is not None and curr.left is not None:
+        curr = curr.left
+    return curr
+
+
+def del_node(root, x):
+  
+    # Base case
+    if root is None:
+        return root
+
+    # If key to be searched is in a subtree
+    if root.value > x:
+        root.left = del_node(root.left, x)
+    elif root.value < x:
+        root.right = del_node(root.right, x)
+        
+    else:
+        
+        if root.left is None:
+            return root.right
+
+        if root.right is None:
+            return root.left
+
+        # When both children are present
+        succ = get_successor(root)
+        root.value = succ.value
+        root.right = del_node(root.right, succ.value)
+        
+    return root
+
+
+# Create a tree with root value 15
+root = Tree(15)
+# Insert some values into the tree
+root.insert(Tree(10))
+root.insert(Tree(18))
+root.insert(Tree(14))
+root.insert(Tree(4))
+root.insert(Tree(20))
+print("Inorder Traversal: ")
+inorderTraversal(root)
+root=del_node(root, 18)
+print()
+print("Inorder traversal: ", end=' ')
+inorderTraversal(root)

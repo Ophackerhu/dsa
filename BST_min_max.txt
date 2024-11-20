@@ -1,0 +1,90 @@
+class BST:
+    ecount=0
+    ocount=0
+    def __init__(self, val):
+        self.left=None
+        self.data=val
+        self.right=None
+        
+    def insert_node(self, new_node):
+        #self is root node in first call
+        if new_node.data<self.data:
+            if self.left==None:
+                self.left=new_node
+                print("Node is inserted: ", new_node.data)
+            else:
+                self.left.insert_node(new_node)# goto left subtree
+        else:
+            if self.right==None:
+                self.right=new_node
+                print("Node is inserted: ", new_node.data)
+            else:
+                self.right.insert_node(new_node)#goto right subtree
+            
+#Inorder Traversal
+def inorder_traversal(self):
+    if self==None:
+        return
+    else:
+        inorder_traversal(self.left)#traverse left subtree
+        print(self.data, end=" ")
+        inorder_traversal(self.right)#traverse right subtree
+        
+        
+#search node
+def search_node(self, value):
+    if self==None:
+        print("node not found")
+        return
+    if self.data==value:
+        print("node found")
+        return
+    if value<self.data:
+        search_node(self.left, value)
+    else:
+        search_node(self.right, value)
+        
+#find min value node
+def find_min(self):
+    if self.left==None:
+        print("Min value: ", self.data)
+        return
+    else:
+        find_min(self.left)
+        
+#find max value node
+def find_max(self):
+    if self.right==None:
+        print("Max value: ", self.data)
+        return
+    else:
+        find_max(self.right)  
+        
+#Count even and odd value nodes
+def count(self):
+    if self==None:
+        return
+    else:
+        count(self.left)#traverse left subtree
+        if self.data%2==0:
+            BST.ecount=BST.ecount+1
+        else:
+            BST.ocount=BST.ocount+1
+        count(self.right)#traverse right subtree
+        
+        
+root=BST(25)
+root.insert_node(BST(15))
+root.insert_node(BST(30))
+root.insert_node(BST(4))
+root.insert_node(BST(45))
+root.insert_node(BST(35))
+root.insert_node(BST(20))
+print("Inorder Traversal: ")
+inorder_traversal(root)
+search_node(root, 450)
+find_min(root)
+find_max(root)
+count(root)
+print("Even nodes: ", BST.ecount)
+print("Odd nodes: ", BST.ocount)
