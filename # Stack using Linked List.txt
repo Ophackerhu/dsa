@@ -1,0 +1,62 @@
+# Stack using Linked List
+class Node:
+    def __init__(self, new_data):
+        self.data = new_data
+        self.next = None
+
+# Class to implement stack using a singly linked list
+class Stack:
+    def __init__(self):
+        self.top = None
+
+    # Function to check if the stack is empty
+    def is_empty(self):
+        # If head is None, the stack is empty
+        return self.top is None
+
+    # Function to push an element onto the stack
+    def push(self, new_data):
+        new_node = Node(new_data)
+        new_node.next = self.top
+        self.top = new_node
+        
+    def pop(self):
+        temp=self.top
+        print("Popped element: ",temp.data)
+        self.top=self.top.next
+        del temp
+        
+    # Function to remove the top element from the stack
+    def print(self):
+        print("Stack contains...")
+        if self.is_empty():
+            print("\nStack Underflow")
+        else:
+            temp = self.top
+            while temp:
+                print(temp.data)
+                temp=temp.next
+                
+    def reverse(self):
+        temp=self.top
+        while temp:
+            st1.push(temp.data)
+            prev=temp
+            temp=temp.next
+        #return prev
+            
+# Creating a stack
+st = Stack()
+st1=Stack()
+# Push elements onto the stack
+st.push(11)
+st.push(22)
+st.push(33)
+st.push(44)
+st.print()
+# removing two elemements from the top
+print("Removing two elements...");
+st.pop()
+st.print()
+st.reverse()
+st1.print()
